@@ -12,5 +12,5 @@ export function mergeTwoLists(
   list2: ListNode | null
 ): ListNode | null {
 
-    return []
+    return null
 }
