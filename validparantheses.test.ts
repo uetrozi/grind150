@@ -24,3 +24,8 @@ test("triple brackets", () => {
     const output = isValid("(()");
     expect(output).toBeFalsy()
   });
+
+  test("even count with different brackets", () => {
+    const output = isValid("(()[]]");
+    expect(output).toBeFalsy()
+  });
