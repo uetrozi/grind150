@@ -14,3 +14,28 @@ test("s is an empty string  after removing non-alphanumeric characters. Since an
   const output = isPalindrome(" ");
   expect(output).toBeTruthy();
 });
+
+test("1010", () => {
+  const output = isPalindrome("1010");
+  expect(output).toBeFalsy();
+});
+
+test("Taco Cat", () => {
+  const output = isPalindrome("taco Cat");
+  expect(output).toBeTruthy();
+});
+
+test("Was it a car or a cat I saw?", () => {
+  const output = isPalindrome("Was it a car or a cat I saw?");
+  expect(output).toBeTruthy();
+});
+
+test("hello", () => {
+  const output = isPalindrome("hello");
+  expect(output).toBeFalsy();
+});
+
+test("momma made me eat my m&ms", () => {
+  const output = isPalindrome("momma made me eat my m&ms");
+  expect(output).toBeFalsy();
+});
