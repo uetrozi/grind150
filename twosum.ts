@@ -7,7 +7,6 @@ export function findIndices(nums: number[], target: number): number[] {
         return [index, index2];
       }
     }
-    console.log(element);
   }
 
   return [];
