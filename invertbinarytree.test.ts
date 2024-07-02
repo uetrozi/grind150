@@ -1,7 +1,54 @@
-import { invertTree } from "./invertbinarytree";
+import { TreeNode, invertTree } from "./invertbinarytree";
 
+function treeToArray(root: TreeNode | null): number[] {
+  if (!root) return [];
+  const result: (number | null)[] = [];
+  const queue: (TreeNode | null)[] = [root];
+  while (queue.length > 0) {
+    const node = queue.shift();
+    if (node) {
+      result.push(node.val);
+      queue.push(node.left);
+      queue.push(node.right);
+    } else {
+      result.push(null);
+    }
+  }
+  while (result[result.length - 1] === null) {
+    result.pop();
+  }
+  return result.filter((value): value is number => value !== null);
+}
 
-test("long binary tree", () => {
-  const invertedRoot = invertTree([4,2,7,1,3,6,9]);
-  expect(invertedRoot).toEqual([4,7,2,9,6,3,1]);
+test("invert binary tree", () => {
+  const root = new TreeNode(
+    4,
+    new TreeNode(2, new TreeNode(1), new TreeNode(3)),
+    new TreeNode(7, new TreeNode(6), new TreeNode(9))
+  );
+
+  const expected = new TreeNode(
+    4,
+    new TreeNode(7, new TreeNode(9), new TreeNode(6)),
+    new TreeNode(2, new TreeNode(3), new TreeNode(1))
+  );
+
+  const output = invertTree(root);
+  expect(treeToArray(output)).toEqual(treeToArray(expected));
+});
+
+test("invert height 1 binary tree", () => {
+  const root = new TreeNode(2, new TreeNode(1), new TreeNode(3));
+
+  const expected = new TreeNode(2, new TreeNode(3), new TreeNode(1));
+
+  const output = invertTree(root);
+  expect(treeToArray(output)).toEqual(treeToArray(expected));
+});
+
+test("invert an empty tree", () => {
+  const root = null;
+  const expected = null;
+  const output = invertTree(root);
+  expect(output).toBe(expected);
 });
