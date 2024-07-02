@@ -52,3 +52,34 @@ test("invert an empty tree", () => {
   const output = invertTree(root);
   expect(output).toBe(expected);
 });
+
+test("invert single node tree", () => {
+  const root = new TreeNode(1);
+
+  const expected = new TreeNode(1);
+
+  const output = invertTree(root);
+  expect(treeToArray(output)).toEqual(treeToArray(expected));
+});
+
+test("invert tree with only left children", () => {
+  const root = new TreeNode(1, new TreeNode(2, new TreeNode(3)));
+
+  const expected = new TreeNode(
+    1,
+    null,
+    new TreeNode(2, null, new TreeNode(3))
+  );
+
+  const output = invertTree(root);
+  expect(treeToArray(output)).toEqual(treeToArray(expected));
+});
+
+test("invert tree with only right children", () => {
+  const root = new TreeNode(1, null, new TreeNode(2, null, new TreeNode(3)));
+
+  const expected = new TreeNode(1, new TreeNode(2, new TreeNode(3)));
+
+  const output = invertTree(root);
+  expect(treeToArray(output)).toEqual(treeToArray(expected));
+});
