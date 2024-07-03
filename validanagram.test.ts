@@ -19,3 +19,13 @@ test("is another anagram", () => {
   const output = isAnagram("rantanplan", "nalpnatnar");
   expect(output).toBeTruthy();
 });
+
+test("is unicode anagram", () => {
+  const output = isAnagram("😊🍎", "🍎😊");
+  expect(output).toBeTruthy();
+});
+
+test("is unicode anagram", () => {
+  const output = isAnagram("🍎🍎", "🍎😊");
+  expect(output).toBeFalsy();
+});

@@ -1,11 +1,15 @@
 export function isAnagram(s: string, t: string): boolean {
-  const sortedSToArray = Array.from(s).sort();
-  const sortedTToArray = Array.from(t).sort();
+  if (s.length !== t.length) return false;
 
-  if (sortedSToArray.length !== sortedTToArray.length) return false;
+  const sortedS = Array.from(s)
+    .sort((a, b) => a.localeCompare(b))
+    .join("");
+  const sortedT = Array.from(t)
+    .sort((a, b) => a.localeCompare(b))
+    .join("");
 
-  for (let i = 0; i < sortedSToArray.length; i++) {
-    if (sortedSToArray[i] !== sortedTToArray[i]) return false;
+  for (let i = 0; i < sortedS.length; i++) {
+    if (sortedS[i] !== sortedT[i]) return false;
   }
   return true;
 }
